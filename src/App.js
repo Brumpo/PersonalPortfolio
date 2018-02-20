@@ -7,26 +7,25 @@ import JumboTron from './components/jumboTron.js'
 
 class App extends Component {
   constructor(props){
+    super(props)
     this.state = {
-      projects : []
-      dropdown : false
+      projects : [4,12,2,15],
+      dropdown : false,
       expanded : -1
     }
     this.toggleDropdown = this.toggleDropdown
   }
   toggleDropdown(){
-    this.dropdown
+    var newDropdown = this.dropdown ? false : true
+    this.setState({dropdown: newDropdown})
   }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <NavBar dropdown = {this.state.dropdown} toggleDropdown = {this.toggleDropdown}/>
+        <JumboTron/>
+        <BodyContainer projects = {this.state.projects} expanded = {this.state.expanded}/>
+
       </div>
     );
   }
